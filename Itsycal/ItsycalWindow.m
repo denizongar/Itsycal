@@ -9,8 +9,8 @@
 #import "ItsycalWindow.h"
 
 static const CGFloat kMinimumSpaceBetweenWindowAndScreenEdge = 10;
-static const CGFloat kArrowHeight  = 8;
-static const CGFloat kCornerRadius = 8;
+static const CGFloat kArrowHeight  = -1;
+static const CGFloat kCornerRadius = 4;
 static const CGFloat kBorderWidth  = 1;
 static const CGFloat kShadowWidth  = 12;
 static const CGFloat kWindowTopMargin    = kCornerRadius + kBorderWidth + kArrowHeight;
@@ -195,7 +195,7 @@ static const CGFloat kWindowBottomMargin = kCornerRadius + kBorderWidth + kShado
         shadow.shadowOffset = NSMakeSize(0, -kShadowWidth/2);
     }
     [shadow set];
-    [[NSColor colorWithWhite:0.3 alpha:0.4] setStroke];
+    [[NSColor colorWithWhite:0.3 alpha:0.1] setStroke];
     [[NSColor whiteColor] setFill];
     [rectPath setLineWidth:2*kBorderWidth];
     [rectPath stroke];

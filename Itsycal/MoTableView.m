@@ -64,8 +64,8 @@
         }
         if (row == self.hoverRow && isGroupRow == NO) {
             [self.hoverColor set];
-            NSRect rect = NSInsetRect([self rectOfRow:row], 2, 2);
-            [[NSBezierPath bezierPathWithRoundedRect:rect xRadius:3 yRadius:3] fill];
+            NSRect rect = NSInsetRect([self rectOfRow:row], 0, 0);
+            [[NSBezierPath bezierPathWithRoundedRect:rect xRadius:0 yRadius:0] fill];
         }
     }];
 }

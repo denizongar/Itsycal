@@ -77,21 +77,22 @@ static NSColor *kTodayCellColor=nil, *kHoveredCellColor=nil, *kSelectedCellColor
     if (self.isToday) {
         [kTodayCellColor set];
         NSRect r = NSInsetRect(self.bounds, 2, 2);
-        NSBezierPath *p = [NSBezierPath bezierPathWithRoundedRect:r xRadius:3 yRadius:3];
+        NSBezierPath *p = [NSBezierPath bezierPathWithRoundedRect:r xRadius:2 yRadius:2];
         [p setLineWidth:2];
         [p stroke];
     }
     else if (self.isSelected) {
         [kSelectedCellColor set];
         NSRect r = NSInsetRect(self.bounds, 2.5, 2.5);
-        [[NSBezierPath bezierPathWithRoundedRect:r xRadius:3 yRadius:3] stroke];
+        [[NSBezierPath bezierPathWithRoundedRect:r xRadius:2 yRadius:2] stroke];
+        
     }
     else if (self.isHovered) {
         [kHoveredCellColor set];
-        NSRect r = NSInsetRect(self.bounds, 2.5, 2.5);
-        [[NSBezierPath bezierPathWithRoundedRect:r xRadius:3 yRadius:3] stroke];
+        NSRect r = NSInsetRect(self.bounds, 1, 1);
+        [[NSBezierPath bezierPathWithRoundedRect:r xRadius:2 yRadius:2] stroke];
         [[kHoveredCellColor colorWithAlphaComponent:0.1] set];
-        [[NSBezierPath bezierPathWithRoundedRect:r xRadius:3 yRadius:3] fill];
+        [[NSBezierPath bezierPathWithRoundedRect:r xRadius:2 yRadius:2] fill];
     }
     if (self.hasDot) {
         [self.textField.textColor set];

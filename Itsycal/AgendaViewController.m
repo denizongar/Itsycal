@@ -63,7 +63,7 @@ static NSString *kEventCellIdentifier = @"EventCell";
     NSScrollView *tvContainer = [NSScrollView new];
     tvContainer.translatesAutoresizingMaskIntoConstraints = NO;
     tvContainer.drawsBackground = NO;
-    tvContainer.hasVerticalScroller = YES;
+    tvContainer.hasVerticalScroller = NO;
     tvContainer.documentView = _tv;
     
     [v addSubview:tvContainer];
@@ -177,7 +177,7 @@ static NSString *kEventCellIdentifier = @"EventCell";
     static AgendaEventCell *cell = nil;
     if (cell == nil) { cell = [AgendaEventCell new]; }
     
-    CGFloat height = 18; // AgendaDateCell height;
+    CGFloat height = 23; // AgendaDateCell height;
     id obj = self.events[row];
     if ([obj isKindOfClass:[EventInfo class]]) {
         cell.frame = NSMakeRect(0, 0, NSWidth(_tv.frame), 999); // only width is important here
@@ -248,7 +248,8 @@ static NSString *kEventCellIdentifier = @"EventCell";
     _dateFormatter.doesRelativeDateFormatting = NO;
     _dateFormatter.dateStyle = NSDateFormatterShortStyle;
     // Finally, put them together...
-    return [NSString stringWithFormat:@"%@ ∙ %@", dow, [_dateFormatter stringFromDate:date]];
+    return [NSString stringWithFormat:@"%@", dow];
+//    return [NSString stringWithFormat:@"%@ ∙ %@", dow, [_dateFormatter stringFromDate:date]];
 }
 
 - (NSAttributedString *)eventStringForInfo:(EventInfo *)info
@@ -318,7 +319,7 @@ static NSString *kEventCellIdentifier = @"EventCell";
         _textField.stringValue = @"";
         [self addSubview:_textField];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-4-[_textField]-4-|" options:0 metrics:nil views:@{@"_textField": _textField}]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-2-[_textField]" options:0 metrics:nil views:@{@"_textField": _textField}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[_textField]" options:0 metrics:nil views:@{@"_textField": _textField}]];
     }
     return self;
 }

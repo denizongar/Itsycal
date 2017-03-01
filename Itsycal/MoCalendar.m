@@ -140,7 +140,7 @@ static NSColor *kBackgroundColor=nil, *kWeeksBackgroundColor=nil, *kDatesBackgro
     [vfl :@"H:[_dowGrid]|"];
     [vfl :@"H:[_weekGrid][_dateGrid]|"];
     [vfl :@"V:|-2-[_btnPrev]"];
-    [vfl :@"V:|[_monthLabel]-3-[_dowGrid]-(-2)-[_dateGrid]-1-|"];
+    [vfl :@"V:|[_monthLabel]-10-[_dowGrid]-(-8)-[_dateGrid]-1-|"];
     [vfl :@"V:[_weekGrid]-1-|"];
     [vfl :@"V:[_resizeHandle(7)]|"];
 
@@ -684,54 +684,54 @@ static NSColor *kBackgroundColor=nil, *kWeeksBackgroundColor=nil, *kDatesBackgro
     [kDatesBackgroundColor set];
     NSRectFillUsingOperation(_dateGrid.frame, NSCompositingOperationSourceOver);
     
-    NSBezierPath *outlinePath = [self bezierPathWithStartCell:_monthStartCell endCell:_monthEndCell radius:4 inset:0 useRects:NO];
+//    NSBezierPath *outlinePath = [self bezierPathWithStartCell:_monthStartCell endCell:_monthEndCell radius:4 inset:0 useRects:NO];
     
     [kOutlineColor set];
-    [outlinePath setLineWidth:2];
-    [outlinePath stroke];
+//    [outlinePath setLineWidth:2];
+//    [outlinePath stroke];
     
     [[NSColor whiteColor] set];
     [NSGraphicsContext saveGraphicsState];
     [kShadow set];
-    [outlinePath fill];
+//    [outlinePath fill];
     [NSGraphicsContext restoreGraphicsState];
 
-    if (self.highlightedDOWs) {
-        NSRect weekendRect = [self convertRect:[_dateGrid cellsRect] fromView:_dateGrid];
-        weekendRect.size.width = kMoCalCellWidth;
-        [[NSColor colorWithWhite:0.15 alpha:0.05] set];
-        NSInteger numColsToHighlight = 0;
-        for (NSInteger col = 0; col <= 7; col++) {
-            if (col < 7 && [self columnIsMemberOfHighlightedDOWs:col]) {
-                numColsToHighlight++;
-            }
-            else {
-                if (numColsToHighlight) {
-                    NSInteger startCol = col - numColsToHighlight;
-                    NSRect rect = NSOffsetRect(weekendRect, startCol * kMoCalCellWidth, 0);
-                    rect.size.width *= numColsToHighlight;
-                    [[NSBezierPath bezierPathWithRoundedRect:rect xRadius:4 yRadius:4] fill];
-                }
-                numColsToHighlight = 0;
-            }
-        }
+//    if (self.highlightedDOWs) {
+//        NSRect weekendRect = [self convertRect:[_dateGrid cellsRect] fromView:_dateGrid];
+//        weekendRect.size.width = kMoCalCellWidth;
+//        [[NSColor colorWithWhite:0.15 alpha:0.05] set];
+//        NSInteger numColsToHighlight = 0;
+//        for (NSInteger col = 0; col <= 7; col++) {
+//            if (col < 7 && [self columnIsMemberOfHighlightedDOWs:col]) {
+//                numColsToHighlight++;
+//            }
+//            else {
+//                if (numColsToHighlight) {
+//                    NSInteger startCol = col - numColsToHighlight;
+//                    NSRect rect = NSOffsetRect(weekendRect, startCol * kMoCalCellWidth, 0);
+//                    rect.size.width *= numColsToHighlight;
+//                    [[NSBezierPath bezierPathWithRoundedRect:rect xRadius:4 yRadius:4] fill];
+//                }
+//                numColsToHighlight = 0;
+//            }
+//        }
     }
 
-    if (_highlightPath) {
-        // Tranlsate the highlight path. It's location will depend
-        // on whether we are showing weeks or not because they add
-        // an additional column.
-        NSAffineTransform *t = [NSAffineTransform new];
-        [t translateXBy:NSMinX(_dateGrid.frame) yBy:0];
-        NSBezierPath *highlightPath = [_highlightPath copy];
-        [highlightPath transformUsingAffineTransform:t];
-        NSColor *outlineColor = [_highlightColor blendedColorWithFraction:0.6 ofColor:[NSColor blackColor]];
-        [[outlineColor colorWithAlphaComponent:0.3] setStroke];
-        [[_highlightColor colorWithAlphaComponent:0.2] setFill];
-        [highlightPath stroke];
-        [highlightPath fill];
-    }
-}
+//    if (_highlightPath) {
+//        // Tranlsate the highlight path. It's location will depend
+//        // on whether we are showing weeks or not because they add
+//        // an additional column.
+//        NSAffineTransform *t = [NSAffineTransform new];
+//        [t translateXBy:NSMinX(_dateGrid.frame) yBy:0];
+//        NSBezierPath *highlightPath = [_highlightPath copy];
+//        [highlightPath transformUsingAffineTransform:t];
+//        NSColor *outlineColor = [_highlightColor blendedColorWithFraction:0.6 ofColor:[NSColor blackColor]];
+//        [[outlineColor colorWithAlphaComponent:0.3] setStroke];
+//        [[_highlightColor colorWithAlphaComponent:0.2] setFill];
+//        [highlightPath stroke];
+//        [highlightPath fill];
+//    }
+//}
 
 - (NSBezierPath *)bezierPathWithStartCell:(MoCalCell *)startCell endCell:(MoCalCell *)endCell radius:(CGFloat)r inset:(CGFloat)inset useRects:(BOOL)useRects
 {
